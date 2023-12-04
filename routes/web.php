@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PuntoController;
+use App\Http\Controllers\TareaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\ProfesionalsController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\TareaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +28,9 @@ Route::get('/', [TareaController::class, 'index'] )->middleware(['auth', 'verifi
 Route::get('/tareas/create', [TareaController::class, 'create'] )->middleware(['auth', 'verified'])->name('tareas.create');
 Route::get('/tareas/{tarea}/edit', [TareaController::class, 'edit'])->middleware(['auth', 'verified'])->name('tareas.edit');
 Route::get('/tareas/{tarea}', [TareaController::class, 'show'])->middleware(['auth'])->name('tareas.show');
-
+Route::get('/profesionals/{tarea}', [ProfesionalsController::class, 'index'])->name('profesionals.index');
+Route::get('/tareas/{tarea}/puntos/create', [PuntoController::class, 'create'] )->middleware(['auth', 'verified'])->name('puntos.create');
+Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'verified'])->name('notificaciones');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

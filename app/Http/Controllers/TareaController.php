@@ -12,6 +12,7 @@ class TareaController extends Controller
      */
     public function index()
     {
+		$this->authorize('viewAny', Tarea::class);
         return view('tareas.index');
     }
 
@@ -20,7 +21,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-		//$this->authorize('create', Tarea::class);
+		$this->authorize('create', Tarea::class);
 		return view('tareas.create');
     }
 

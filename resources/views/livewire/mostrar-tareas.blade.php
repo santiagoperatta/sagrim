@@ -12,14 +12,10 @@
                 </div>
 
                 <div class="p-4 flex gap-3 items-start">
-                    <a href="#" class="text-center bg-gray-700 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase">
+                    <a href="{{route('profesionals.index', $tarea)}}" class="text-center bg-gray-700 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase">
                         Corregir
                     </a>
-
-                    <a href="#" class="text-center bg-green-700 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase">
-                        Aprobar
-                    </a>
-
+					
                     <a href="{{route('tareas.edit', $tarea->id)}}" class="text-center bg-blue-700 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase">
                         Editar
                     </a>

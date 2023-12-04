@@ -7,25 +7,39 @@
 
                 @auth
 					<!-- Navigation Links -->
-					<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-						<x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
-							{{ __('Tus Tareas') }}
-						</x-nav-link>
+					@can('create', App\Models\Tarea::class)
+						<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+							<x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
+								{{ __('Tus Tareas') }}
+							</x-nav-link>
 
-						<x-nav-link :href="route('tareas.create')" :active="request()->routeIs('tareas.create')">
-							{{ __('Crear Tareas') }}
-						</x-nav-link>
-					</div>
+							<x-nav-link :href="route('tareas.create')" :active="request()->routeIs('tareas.create')">
+								{{ __('Crear Tareas') }}
+							</x-nav-link>
+						</div>
+					@endcan
+					@cannot('create', App\Models\Tarea::class)
+						<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+							<x-nav-link :href="route('tareas.index')" :active="request()->routeIs('tareas.index')">
+								{{ __('Tareas Presentadas') }}
+							</x-nav-link>
+
+							<x-nav-link :href="route('tareas.create')" :active="request()->routeIs('tareas.create')">
+								{{ __('Nueva Tarea') }}
+							</x-nav-link>
+						</div>
+					@endcannot
+
                 @endauth
 
             <!-- Settings Dropdown -->
 			<div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
-                    @can('create', App\Models\Tarea::class)
-                        <a class="mr-2 w-7 h-7 bg-yellow-600 hover:bg-yellow-800 rounded-full flex flex-col justify-center items-center text-sm font-bold text-white" href="{{ route('notificaciones') }}">
-                            {{ Auth::user()->unreadNotifications->count() }}
-                        </a>
-                    @endcan
+					@can('create', App\Models\Tarea::class)
+						<a class="mr-2 w-7 h-7 bg-green-600 hover:bg-green-800 rounded-full flex flex-col justify-center items-center text-sm font-bold text-white" href="{{ route('notificaciones') }}">
+							{{ Auth::user()->unreadNotifications->count() }}
+						</a>
+					@endcan
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -72,9 +86,6 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         @auth
-            @if (auth()->user()->rol === 2)
-            @endif
-
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Profesional;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,7 +19,13 @@ class Tarea extends Model
 		'user_id'	
 	];
 
-	public function admin(){
+	public function profesionals()
+	{
+		return $this->hasMany(Profesional::class);
+	}
+
+	public function admin()
+	{
 		return $this->belongsTo(User::class, 'user_id');
 	}
 }
