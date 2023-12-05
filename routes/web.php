@@ -28,6 +28,7 @@ Route::get('/', [TareaController::class, 'index'] )->middleware(['auth', 'verifi
 Route::get('/tareas/create', [TareaController::class, 'create'] )->middleware(['auth', 'verified'])->name('tareas.create');
 Route::get('/tareas/{tarea}/edit', [TareaController::class, 'edit'])->middleware(['auth', 'verified'])->name('tareas.edit');
 Route::get('/tareas/{tarea}', [TareaController::class, 'show'])->middleware(['auth'])->name('tareas.show');
+Route::post('/tareas/{tarea}/subir-archivo', [TareaController::class, 'subirArchivo'])->middleware(['auth'])->name('tareas.subir-archivo');
 Route::get('/profesionals/{tarea}', [ProfesionalsController::class, 'index'])->name('profesionals.index');
 Route::get('/tareas/{tarea}/puntos/create', [PuntoController::class, 'create'] )->middleware(['auth', 'verified'])->name('puntos.create');
 Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'verified'])->name('notificaciones');
