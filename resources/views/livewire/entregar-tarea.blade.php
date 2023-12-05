@@ -1,5 +1,5 @@
 <div class="flex flex-col justify-center items-center">
-        <form method="POST" wire:submit.prevent='subirTarea' class="p-2 w-96 mt-5">
+        <form method="POST" wire:submit.prevent='subirTarea' class="p-2 w-96 mt-5" enctype="multipart/form-data">
             <div class="mb-4">
                 <x-input-label for="pdf"/>
                 <x-text-input id="pdf" class="block mt-1 w-full" type="file" wire:model="pdf" accept=".pdf"/>
