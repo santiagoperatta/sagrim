@@ -1,5 +1,6 @@
 <div class="flex flex-col justify-center items-center">
-    <form method="POST" action="{{ route('tareas.subir-archivo', $tarea) }}" wire:submit.prevent='subirTarea' class="p-2 w-96 mt-5" enctype="multipart/form-data">
+    <form action="{{ route('tareas.subir-archivo', $tarea) }}" wire:submit.prevent='subirTarea' class="p-2 w-96 mt-5" enctype="multipart/form-data">
+		@method('POST')
         @csrf
         <div class="mb-4">
             <x-input-label for="pdf"/>
